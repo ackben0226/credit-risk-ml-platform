@@ -221,17 +221,17 @@ make mlflow
 - Production Monitoring Gap → solved via Prometheus + Streamlit
 - Safe Model Updates → solved via shadow deployment system
 
-📈 System Maturity
+### 📈 System Maturity
 ComponentMaturityFeature Pipeline8/10Training System8/10Model Registry8.5/10API Serving8.5/10Monitoring8/10Shadow Deployment7.5/10Automation Engine7.5/10Overall MLOps System8.5/10
 
-🧭 Future Improvements
+### 🧭 Future Improvements
 - True feature store (Feast/Tecton-style)
 - Kubernetes deployment (autoscaling inference)
 - Automated rollback system based on drift detection
 - CI/CD pipeline for ML training (GitHub Actions)
 - Canary deployment for model rollout
 
-🧠 Summary
+### 🧠 Summary 
 This project demonstrates a production-grade ML platform architecture implementing:
 - End-to-end MLOps lifecycle
 - Model governance and registry control
