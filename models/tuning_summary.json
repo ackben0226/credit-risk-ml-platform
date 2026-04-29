@@ -1,0 +1,19 @@
+{
+  "logistic_regression": {
+    "cv_auc": 0.7486430814914754,
+    "test_auc": 0.7517536726450892,
+    "params": {
+      "model__C": 0.01,
+      "model__class_weight": "balanced"
+    }
+  },
+  "random_forest": {
+    "cv_auc": 0.7437152288732628,
+    "test_auc": 0.7485950380955628,
+    "params": {
+      "model__max_depth": 10,
+      "model__min_samples_split": 2,
+      "model__n_estimators": 300
+    }
+  }
+}

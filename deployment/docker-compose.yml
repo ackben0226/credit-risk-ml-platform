@@ -1,0 +1,114 @@
+version: "3.9"
+
+services:
+
+  # =====================================================
+  # API SERVICE (MODEL SERVING)
+  # =====================================================
+  api:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    container_name: credit-risk-api
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      ENV: prod
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MODEL_NAME: credit-risk-model
+    depends_on:
+      - mlflow
+    networks:
+      - ml-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # =====================================================
+  # MLFLOW TRACKING + REGISTRY
+  # =====================================================
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.10.2
+    container_name: mlflow-server
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      MLFLOW_TRACKING_URI: http://localhost:5000
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri sqlite:///mlflow.db
+      --default-artifact-root /mlruns
+    volumes:
+      - mlruns:/mlruns
+      - mlflow_db:/mlflow
+    networks:
+      - ml-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # =====================================================
+  # POSTGRES (REPLACES SQLITE - IMPORTANT UPGRADE)
+  # =====================================================
+  postgres:
+    image: postgres:15
+    container_name: ml-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow
+      POSTGRES_DB: mlflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ml-network
+
+  # =====================================================
+  # PREFECT ORCHESTRATION
+  # =====================================================
+  prefect:
+    image: prefecthq/prefect:2-latest
+    container_name: prefect-server
+    restart: always
+    ports:
+      - "4200:4200"
+    command: prefect server start --host 0.0.0.0
+    networks:
+      - ml-network
+
+  # =====================================================
+  # REDIS (FOR QUEUES / ASYNC JOBS)
+  # =====================================================
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - ml-network
+
+# =====================================================
+# VOLUMES
+# =====================================================
+volumes:
+  mlruns:
+  mlflow_db:
+  postgres_data:
+
+# =====================================================
+# NETWORK
+# =====================================================
+networks:
+  ml-network:
+    driver: bridge

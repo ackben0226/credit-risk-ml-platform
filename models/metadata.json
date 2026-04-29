@@ -1,0 +1,6 @@
+{
+  "model": "logistic_regression",
+  "auc": 0.7517536726450892,
+  "trained_at": "2026-04-27T00:40:17.858337",
+  "feature_count": 143
+}

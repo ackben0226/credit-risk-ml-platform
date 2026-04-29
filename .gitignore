@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+*.pkl
+*.parquet
+*.db
+.env
+mlruns/
+data/
+.streamlit/secrets.toml
+.pytest_cache/
