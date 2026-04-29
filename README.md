@@ -151,6 +151,7 @@ cd ML-Systems-Credit-Risk-Platform-Engineering-Portfolio
 
 3. Run full system using Docker
 ```docker-compose up --build```
+```
 
 Services:
 - API → http://localhost:8000
