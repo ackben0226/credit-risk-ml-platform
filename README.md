@@ -221,11 +221,17 @@ make mlflow
 - Safe Model Updates → solved via shadow deployment system
 
 ### 📈 System Maturity
-```
-Component
-Maturity
-Feature Pipeline8/10Training System8/10Model Registry8.5/10API Serving8.5/10Monitoring8/10Shadow Deployment7.5/10Automation Engine7.5/10Overall MLOps System8.5/10
-```
+| Component         | Maturity |
+| ----------------- | t-------- |
+| Feature Pipeline  | 8/10     |
+| Training System   | 8/10     |
+| Model Registry    | 8.5/10   |
+| API Serving       | 8.5/10   |
+| Monitoring        | 8/10     |
+| Shadow Deployment | 7.5/10   |
+| Automation Engine | 7.5/10   |
+
+---
 
 ### 🧭 Future Improvements
 - True feature store (Feast/Tecton-style)
