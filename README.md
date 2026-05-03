@@ -166,10 +166,12 @@ make pipeline
 6. __Launch monitoring dashboard__
 make dashboard
 
-🔍 Example API Request
-POST /predict
+## 🔍 Example API Request
+__POST /predict__
+<br/>
 {"feature_1": 1.2,  "feature_2": 0.8,  "feature_3": 3.1}
-Response:
+__Response:__
+<br/>
 {"probability": 0.73,  "prediction": 1}
 
 ## 🧠 Run Core ML Pipeline
@@ -222,7 +224,7 @@ make mlflow
 
 ### 📈 System Maturity
 | Component         | Maturity |
-| ----------------- | t-------- |
+| :---------------: | :------: |
 | Feature Pipeline  | 8/10     |
 | Training System   | 8/10     |
 | Model Registry    | 8.5/10   |
