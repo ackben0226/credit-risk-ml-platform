@@ -1,4 +1,4 @@
-# Credit Risk ML Platform  
+# Advanced Credit Risk Decision System (End-to-End ML Platform)  
 ## Production-Grade MLOps System with Model Registry, Monitoring & Automated Decisioning
 
 ---
@@ -153,18 +153,17 @@ cd ML-Systems-Credit-Risk-Platform-Engineering-Portfolio
 ```docker-compose up --build```
 ```
 
-Services:
+__Services:__
 - API → http://localhost:8000
 - MLflow → http://localhost:5000
 
-
-4. Run API locally
+4. __Run API locally__
 make run
 
-5. Run feature + training pipeline
+5. __Run feature + training pipeline__
 make pipeline
 
-6. Launch monitoring dashboard
+6. __Launch monitoring dashboard__
 make dashboard
 
 🔍 Example API Request
@@ -173,56 +172,60 @@ POST /predict
 Response:
 {"probability": 0.73,  "prediction": 1}
 
-🧠 Run Core ML Pipeline
+## 🧠 Run Core ML Pipeline
 Feature engineering + training pipeline
 make pipeline
 
-📊 Monitoring
+## 📊 Monitoring
 - Streamlit dashboard: prediction drift + latency
 make dashboard
 
 - Prometheus: system metrics
 - CSV event store: full prediction lineage tracking
 
-📉 Run Advanced Graph Visualisations
+## 📉 Run Advanced Graph Visualisations
 streamlit run dashboard.py
 
 📡 MLflow Tracking UI
 make mlflow
 
-⚙️ Engineering Principles
-1. Reproducibility
+## ⚙️ Engineering Principles
+1. __Reproducibility__
 - Versioned datasets
 - MLflow tracking
 - Deterministic feature pipelines
 
-2. Separation of Concerns
+2. __Separation of Concerns__
 - Feature engineering ≠ training ≠ serving
 - Registry acts as control plane
 
-3. Production Safety
+3. __Production Safety__
 - Schema enforcement at inference boundary
 - Shadow model validation before promotion
 - Controlled model lifecycle transitions
 
-4. Observability First
+4. __Observability First__
 - Every prediction logged
 - System metrics exposed via Prometheus
 - Drift monitoring in dashboard
 
-5. Failure Isolation
+5. __Failure Isolation__
 - API independent of training system
 - Registry failures do not affect inference
 - Monitoring decoupled from model logic
 
-⚠️ Key Problems Solved
+## ⚠️ Key Problems Solved
 - Training–Serving Skew → solved via schema contract
 - Model Lifecycle Control → solved via MLflow registry + aliases
 - Production Monitoring Gap → solved via Prometheus + Streamlit
 - Safe Model Updates → solved via shadow deployment system
 
 ### 📈 System Maturity
-ComponentMaturityFeature Pipeline8/10Training System8/10Model Registry8.5/10API Serving8.5/10Monitoring8/10Shadow Deployment7.5/10Automation Engine7.5/10Overall MLOps System8.5/10
+```
+Component
+Maturity
+Feature Pipeline8/10Training System8/10Model Registry8.5/10API Serving8.5/10Monitoring8/10Shadow Deployment7.5/10Automation Engine7.5/10Overall MLOps System8.5/10
+```
 
 ### 🧭 Future Improvements
 - True feature store (Feast/Tecton-style)
